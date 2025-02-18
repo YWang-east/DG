@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to DG &#8212; DG-FEM 1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=a681ed88"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'introduction';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Physical Models" href="models.html" />
+    <link rel="prev" title="Getting started" href="getting_started.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">DG-FEM 1.0 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to DG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Physical Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="outlook.html">Outlook</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/introduction.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to DG</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-discontinuous-galerkin-method">The Discontinuous Galerkin Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-fdm-fvm-and-fem">Comparison with FDM, FVM, and FEM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#legendre-gauss-lobatto-quadrature">Legendre-Gauss-Lobatto quadrature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-wise-operations">Cell-wise operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-flux">Numerical flux</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lax-friedrichs-flux">Lax-Friedrichs flux</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-integration">Time Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nd-order-runge-kutta-rk2">2nd order Runge-Kutta (<code class="docutils literal notranslate"><span class="pre">RK2</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strong-stability-preserving-3rd-order-runge-kutta-ssp-rk3">Strong stability preserving 3rd order Runge-Kutta (<code class="docutils literal notranslate"><span class="pre">SSP_RK3</span></code>)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="introduction-to-dg">
+<h1>Introduction to DG<a class="headerlink" href="#introduction-to-dg" title="Link to this heading">#</a></h1>
+<section id="the-discontinuous-galerkin-method">
+<h2>The Discontinuous Galerkin Method<a class="headerlink" href="#the-discontinuous-galerkin-method" title="Link to this heading">#</a></h2>
+<p>Consider the 1D scalar conservation law</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial u}{\partial t} + \frac{\partial f(u)}{\partial x} = 0.\]</div>
+<p>To solve the above equation, the idea is to discretize the physical domain into <cite>K</cite> non-overlapping cells <span class="math notranslate nohighlight">\(D^k\)</span>. The local solution within the cell is assumed to be</p>
+<div class="math notranslate nohighlight">
+\[x \in D^k=[x_l^k, \ x_r^k]: \ u_h^k(x) = \sum_{i=1}^{N_p} u_h^k(x_i^k) \ell_i^k(x),\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_i^k\)</span> are the <span class="math notranslate nohighlight">\(N_p\)</span> distinct nodes (or grid points) and <span class="math notranslate nohighlight">\(\ell_i^k(x)\)</span> are polynomials of degree <span class="math notranslate nohighlight">\(N_p - 1\)</span>.</p>
+<p>Multiplying the conservation law by a test function <span class="math notranslate nohighlight">\(\ell_j^k(x)\)</span> and integrating over the cell <span class="math notranslate nohighlight">\(D^k\)</span> lead to</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{M}^k \frac{d}{d t} \boldsymbol{u}_h^k+\mathcal{S}^k\boldsymbol{f}_h^k =\left[\ell^k(x) \left(f_h^k - f_h^*\right)\right]_{x_l^k}^{x_r^k},\]</div>
+<p>with</p>
+<ul class="simple">
+<li><p>the solution vector <span class="math notranslate nohighlight">\(\boldsymbol{u}_h^k = [u_1^k, \dots, u_{N_p}^k]^T\)</span>,</p></li>
+<li><p>the flux vector <span class="math notranslate nohighlight">\(\boldsymbol{f}_h^k = [f_1^k, \dots, f_{N_p}^k]^T\)</span>,</p></li>
+<li><p>the numerical flux <span class="math notranslate nohighlight">\(f_h^* = f(u_h^*)\)</span>,</p></li>
+<li><p>the mass and stiffness matrices</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\mathcal{M}^k = \int_{D^k} \ell_i^k(x) \ell_j^k(x) dx, \quad
+\mathcal{S}^k = \int_{D^k} \ell_i^k(x) \frac{d \ell_j^k(x)}{dx} dx.\]</div>
+<p>Unlike the conventional finite element method (FEM), solutions can be discontinuous at cell interfaces. They are coupled through the numerical flux <span class="math notranslate nohighlight">\(f_h^*\)</span>, which recovers the global solution. This property resembles the finite volume method (FVM), but the DG method can easily achieve high-order accuracy by simply increasing the local polynomial degree.</p>
+</section>
+<section id="comparison-with-fdm-fvm-and-fem">
+<h2>Comparison with FDM, FVM, and FEM<a class="headerlink" href="#comparison-with-fdm-fvm-and-fem" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Methods</p></th>
+<th class="head"><p>Complex geometries</p></th>
+<th class="head"><p><cite>hp</cite>-adaptivity</p></th>
+<th class="head"><p>Hyperbolic problems</p></th>
+<th class="head"><p>Elliptic problems</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FDM</p></td>
+<td><p>X</p></td>
+<td><p>√</p></td>
+<td><p>√</p></td>
+<td><p>√</p></td>
+</tr>
+<tr class="row-odd"><td><p>FVM</p></td>
+<td><p>√</p></td>
+<td><p>X</p></td>
+<td><p>√</p></td>
+<td><p>(√)</p></td>
+</tr>
+<tr class="row-even"><td><p>FEM</p></td>
+<td><p>√</p></td>
+<td><p>√</p></td>
+<td><p>X</p></td>
+<td><p>√</p></td>
+</tr>
+<tr class="row-odd"><td><p>DG-FEM</p></td>
+<td><p>√</p></td>
+<td><p>√</p></td>
+<td><p>√</p></td>
+<td><p>(√)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="legendre-gauss-lobatto-quadrature">
+<h3>Legendre-Gauss-Lobatto quadrature<a class="headerlink" href="#legendre-gauss-lobatto-quadrature" title="Link to this heading">#</a></h3>
+<p>Consider a reference cell <span class="math notranslate nohighlight">\(D^{ref} = [-1, \ 1]\)</span>, where the local solution can be approximated by</p>
+<div class="math notranslate nohighlight">
+\[r\in D^{ref}: \  u_h(r) = \sum_{i=1}^{N_p} u(r_i) \ell_i(r),\]</div>
+<p>with the Lagrange polynomial basis</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ell_i(r) = \prod_{\substack{j=1 \\ j \neq i}}^{N_p} \frac{r-r_j}{r_i-r_j}.\end{split}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(r_i\)</span> are the Legendre-Gauss-Lobatto quadrature nodes.</p>
+<p>The mass and stiffness matrices in the reference cell can be computed as</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{M} = (\mathcal{V} \mathcal{V}^T)^{-1}, \quad \mathcal{S} = \mathcal{M} \mathcal{D},\]</div>
+<p>where the Vandermonde matrix <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> and the differentiation matrix <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> are</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{V}_{ij} = \tilde{P}_j(r_i), \quad
+\mathcal{V}_{r, (ij)} = \frac{d \tilde{P}_j}{d r} \Bigg|_{r_i}, \quad
+\mathcal{D} = \mathcal{V}_r \mathcal{V}^{-1}\]</div>
+<p>with <span class="math notranslate nohighlight">\(\tilde{P}_j(r)\)</span> the Legendre polynomial.</p>
+</section>
+<section id="cell-wise-operations">
+<h3>Cell-wise operations<a class="headerlink" href="#cell-wise-operations" title="Link to this heading">#</a></h3>
+<p>The reference cell can be mapped to a generic cell <span class="math notranslate nohighlight">\(D^k = [x_l^k, \ x_r^k]\)</span> through the mapping</p>
+<div class="math notranslate nohighlight">
+\[x(r) = x_l^k + \frac{1+r}{2}(x_r^k - x_l^k).\]</div>
+<p>The mass and stiffness matrices after the mapping become</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{M}^k = \frac{\Delta x}{2} \mathcal{M}, \quad
+\mathcal{S}^k = \mathcal{M} \mathcal{D}\]</div>
+<p>Finally the DG scheme can be written as</p>
+<div class="math notranslate nohighlight">
+\[\frac{d \boldsymbol{u}^k}{dt} = \frac{2}{\Delta x} \left(
+ - \mathcal{D} \boldsymbol{f}^k
+ + \mathcal{M}^{-1} \mathcal{B} (\boldsymbol{f}^k - \boldsymbol{f}^*) \right)\]</div>
+<p>with boundary matrix <span class="math notranslate nohighlight">\(\mathcal{B} = \textrm{diag}(-1,0,\dots,0,1)\)</span></p>
+</section>
+</section>
+<section id="numerical-flux">
+<h2>Numerical flux<a class="headerlink" href="#numerical-flux" title="Link to this heading">#</a></h2>
+<p>The implemented numerical flux solvers are</p>
+<section id="lax-friedrichs-flux">
+<h3>Lax-Friedrichs flux<a class="headerlink" href="#lax-friedrichs-flux" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[f^* = \frac{f(u^+) + f(u^-)}{2} - \frac{\alpha}{2}(u^+ - u^-),\]</div>
+<p>where <span class="math notranslate nohighlight">\(u^+\)</span> and <span class="math notranslate nohighlight">\(u^-\)</span> are the right and left nodal values across a cell interface respectively, and</p>
+<div class="math notranslate nohighlight">
+\[\alpha = \max |f'(u)|.\]</div>
+</section>
+</section>
+<section id="time-integration">
+<h2>Time Integration<a class="headerlink" href="#time-integration" title="Link to this heading">#</a></h2>
+<p>Consider the semi-discrete equation</p>
+<div class="math notranslate nohighlight">
+\[\frac{du}{dt} = L(u),\]</div>
+<p>where operator :math::<cite>L</cite> stands for the resultant spatial discretization from the DG method. Currently, The implemented time integration methods are</p>
+<section id="nd-order-runge-kutta-rk2">
+<h3>2nd order Runge-Kutta (<code class="docutils literal notranslate"><span class="pre">RK2</span></code>)<a class="headerlink" href="#nd-order-runge-kutta-rk2" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}u^{(1)} = u^n +  \frac{\Delta t}{2} L(u^n) \\
+u^{n+1} = u^{(1)} + \Delta t L(u^{(1)})\end{split}\]</div>
+</section>
+<section id="strong-stability-preserving-3rd-order-runge-kutta-ssp-rk3">
+<h3>Strong stability preserving 3rd order Runge-Kutta (<code class="docutils literal notranslate"><span class="pre">SSP_RK3</span></code>)<a class="headerlink" href="#strong-stability-preserving-3rd-order-runge-kutta-ssp-rk3" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}u^{(1)} &amp;= u^n +  \Delta t L(u^n) \\
+u^{(2)} &amp;= \frac{3}{4}u^n + \frac{1}{4}u^{(1)} + \frac{\Delta t}{4} L(u^{(1)}) \\
+u^{n+1} &amp;= \frac{1}{3}u^n + \frac{2}{3}u^{(2)} + \frac{2\Delta t}{3} L(u^{(2)})\end{split}\]</div>
+<div class="note admonition">
+<p class="admonition-title">Reference</p>
+<p>[1] J. S. Hesthaven and T. Warburton (2008). Nodal Discontinuous Galerkin Methods. Springer.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="getting_started.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Getting started</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="models.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Physical Models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-discontinuous-galerkin-method">The Discontinuous Galerkin Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-fdm-fvm-and-fem">Comparison with FDM, FVM, and FEM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#legendre-gauss-lobatto-quadrature">Legendre-Gauss-Lobatto quadrature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-wise-operations">Cell-wise operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-flux">Numerical flux</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lax-friedrichs-flux">Lax-Friedrichs flux</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-integration">Time Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nd-order-runge-kutta-rk2">2nd order Runge-Kutta (<code class="docutils literal notranslate"><span class="pre">RK2</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strong-stability-preserving-3rd-order-runge-kutta-ssp-rk3">Strong stability preserving 3rd order Runge-Kutta (<code class="docutils literal notranslate"><span class="pre">SSP_RK3</span></code>)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yijun Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Yijun Wang.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
