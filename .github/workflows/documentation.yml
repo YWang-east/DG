@@ -1,27 +1,22 @@
 name: Build-sphinx-docs
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+permissions:
+  contents: write  # Allows pushing to the repo
+
 jobs: 
-  # This workflow contains a single job called "build"
   build: 
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Check out repository
+        uses: actions/checkout@v3  # Updated to v3 for better token handling
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v2
@@ -35,10 +30,16 @@ jobs:
           python -m pip install sphinx-book-theme
           python -m pip install sphinx-autoapi
           python -m pip install ghp-import
+
       - name: Build HTML
         run: | 
           cd docs/
           make html
-      - name: Run ghp-import
+
+      - name: Deploy with ghp-import
         run: | 
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           ghp-import -n -p -f docs/build/html
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Ensures authentication
